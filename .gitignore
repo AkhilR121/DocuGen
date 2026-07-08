@@ -1,1 +1,30 @@
-output/
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Output files (generated DOCX/PDF)
+contract-lifecycle-management/output/*.docx
+contract-lifecycle-management/output/*.pdf
+
+# Template cleaning cache
+contract-lifecycle-management/output/.template_cache/
+
+# Template backups
+contract-lifecycle-management/assets/templates/pc-templates/backup/
+
+# LibreOffice lock files
+.~lock.*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+venv/
+env/
