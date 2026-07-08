@@ -9,6 +9,12 @@ import sys
 import subprocess
 import time
 
+# Add scripts directory to path for imports
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, SCRIPT_DIR)
+
+from utils.template_cleaner import ensure_clean
+
 # Configuration
 TEMPLATE_PATH = "assets/templates/pc-template.docx"
 OUTPUT_DIR = "output"
@@ -74,11 +80,14 @@ def generate_contract():
 
     total_start = time.time()
 
-    # Step 1: Load template
+    # Step 1: Ensure template is clean and load it
     print(f"\n[1/4] Loading template: {TEMPLATE_PATH}")
     if not os.path.exists(TEMPLATE_PATH):
         print(f"ERROR: Template not found at {TEMPLATE_PATH}")
         sys.exit(1)
+
+    # Auto-clean template to remove field codes
+    ensure_clean(TEMPLATE_PATH, verbose=True)
 
     try:
         doc = DocxTemplate(TEMPLATE_PATH)
